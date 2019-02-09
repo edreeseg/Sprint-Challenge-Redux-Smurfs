@@ -84,3 +84,9 @@
 .back:active {
   transform: translateY(1px);
 }
+.loading {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 300;
+}

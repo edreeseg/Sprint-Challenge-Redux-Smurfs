@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 
 import { getSmurfs } from '../actions';
 import Smurf from './Smurf';
+import Loading from './Loading';
 
 class SmurfList extends React.Component {
   componentDidMount(){
     this.props.getSmurfs();
   }
   render(){
-  return (
+  return this.props.loading 
+    ? <Loading />
+    : (
     <section className="smurf-list">
       {this.props.smurfs.map(smurf => <Smurf key={smurf.id} data={smurf} />)}
     </section>
@@ -20,12 +23,14 @@ class SmurfList extends React.Component {
 
 SmurfList.propTypes = {
   getSmurfs: PropTypes.func,
-  smurfs: PropTypes.arrayOf(PropTypes.object)
+  smurfs: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool,
 }
 
 const mapStateToProps = state => {
   return {
     smurfs: state.smurfs,
+    loading: state.loading
   };
 }
 
