@@ -22,7 +22,7 @@ class SmurfInput extends React.Component {
     e.preventDefault();
     const [ name, age, height ] = [ this.state.name, Number(this.state.age), this.state.height ]
     if (!name || !age || !height) return this.setState({ error: 'Please fill out all fields' });
-    addSmurf({ name, age, height });
+    this.props.addSmurf({ name, age, height });
     this.setState({ name: '', age: '', height: ''});
   }
   render(){
@@ -54,6 +54,10 @@ class SmurfInput extends React.Component {
       </form>
     );
   }
+}
+
+SmurfInput.propTypes = {
+  addSmurf: PropTypes.func
 }
 
 export default connect(() => ({}), { addSmurf })(SmurfInput);
